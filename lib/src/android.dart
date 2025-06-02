@@ -73,7 +73,7 @@ class AndroidAudioManager {
 
   Future<bool> requestAudioFocus(AndroidAudioFocusRequest focusRequest) async {
     if (focusRequest.gainType.index == 0) {
-      return;
+      return true;
     }
     _onAudioFocusChanged = focusRequest.onAudioFocusChanged;
     return (await _channel
