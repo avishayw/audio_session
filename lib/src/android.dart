@@ -72,6 +72,9 @@ class AndroidAudioManager {
       _scoAudioUpdatedEventSubject.nvalue?.currentState;
 
   Future<bool> requestAudioFocus(AndroidAudioFocusRequest focusRequest) async {
+    if (focusRequest.gainType.index == 0) {
+      return;
+    }
     _onAudioFocusChanged = focusRequest.onAudioFocusChanged;
     return (await _channel
         .invokeMethod<bool>('requestAudioFocus', [focusRequest.toJson()]))!;
